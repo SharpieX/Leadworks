@@ -1,0 +1,16 @@
+<div ng-include="'components/shell/shell.html'"></div>
+
+<md-grid-list class="things-list" md-cols-sm="1" md-cols-md="2" md-cols-gt-md="5" md-row-height-gt-md="1:1" md-row-height="4:3"
+              md-gutter="12px" md-gutter-gt-sm="8px">
+  <md-grid-tile ng-repeat="book in books" ng-class="getColor($index)" md-rowspan="1"
+                md-colspan="1"
+                md-colspan-sm="1">
+    <span class="delete-book" ng-click="deleteBook(book)"><i class="material-icons">&#xE872;</i></span>
+    <md-tooltip md-direction="bottom">{{book.description}}</md-tooltip>
+    <md-icon class="avatar-icon" md-svg-icon="action:book"></md-icon>
+    <md-grid-tile-footer><h3>{{book.title}}</h3></md-grid-tile-footer>
+  </md-grid-tile>
+  <md-grid-tile md-rowspan="1" md-colspan="1" md-colspan-sm="1" class="add-book">
+    <md-icon class="avatar-icon" md-svg-icon="content:add" ng-click="showAddDialog()">
+  </md-icon> </md-grid-tile>
+</md-grid-list>

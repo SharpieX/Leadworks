@@ -1,0 +1,71 @@
+<md-dialog aria-label="Add Book" style="width:50%">
+  <form ng-cloak name="bookForm">
+    <md-toolbar>
+      <div class="md-toolbar-tools">
+        <h2>Add Book</h2>
+        <span flex></span>
+        <md-button class="md-icon-button" ng-click="cancel()">
+          <md-icon md-svg-src="navigation:close" aria-label="Close dialog"></md-icon>
+        </md-button>
+      </div>
+    </md-toolbar>
+
+    <md-dialog-content>
+      <div layout="column" layout-padding>
+        <md-content class="md-no-momentum">
+          <md-input-container class="md-icon-float md-block">
+            <!-- Use floating label instead of placeholder -->
+            <label>Title</label>
+            <md-icon md-svg-src="av:library_books" class="name"></md-icon>
+            <input ng-model="book.title" type="text" md-no-asterisk name="title" required>
+            <div ng-messages="bookForm.title.$error">
+              <div ng-message="required">This is required.</div>
+            </div>
+          </md-input-container>
+
+          <md-input-container class="md-block">
+            <md-icon md-svg-src="action:perm_identity"></md-icon>
+            <input ng-model="book.author" type="text" md-no-asterisk placeholder="Author" name="author" required>
+            <div ng-messages="bookForm.author.$error">
+              <div ng-message="required">This is required.</div>
+            </div>
+          </md-input-container>
+
+          <md-input-container class="md-block" flex-gt-sm>
+            <md-icon md-svg-src="action:code"></md-icon>
+            <input name="isbn" ng-model="book.isbn" ng-pattern="/^ISBN:(\d{9}(?:\d|X))$/"  placeholder="ISBN"/>
+            <div ng-messages="bookForm.isbn.$error">
+              <div ng-message="pattern">'ISBN:1234567890',  Please enter a valid ISBN.</div>
+            </div>
+          </md-input-container>
+
+          <md-input-container flex="100">
+            <label>Genre</label>
+            <md-icon md-svg-src="action:list"></md-icon>
+            <md-select name="genre" ng-model="book.genre">
+              <md-option value="education">Education</md-option>
+              <md-option value="fantasy">Fantasy</md-option>
+              <md-option value="mystery">Mystery</md-option>
+              <md-option value="fiction">Fiction</md-option>
+              <md-option value="poetry">Poetry</md-option>
+              <md-option value="mythology">Mythology</md-option>
+              <md-option value="drama">Drama</md-option>
+            </md-select>
+          </md-input-container>
+
+          <md-input-container class="md-block">
+            <label>Book Description</label>
+            <md-icon md-svg-src="action:description"></md-icon>
+            <textarea ng-model="book.description" md-maxlength="150" rows="5" md-select-on-focus></textarea>
+          </md-input-container>
+        </md-content>
+      </div>
+    </md-dialog-content>
+
+    <md-dialog-actions layout="row" >
+      <md-button ng-click="submit()" class="md-block">
+        Submit
+      </md-button>
+    </md-dialog-actions>
+  </form>
+</md-dialog>
